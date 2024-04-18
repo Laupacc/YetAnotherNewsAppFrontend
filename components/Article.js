@@ -10,13 +10,13 @@ function Article(props) {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user.value);
 
-// Bookmarks
+	// Bookmarks
 	const handleBookmarkClick = () => {
 		if (!user.token) {
 			return;
 		}
 
-		fetch(`https://morning-news-frontend-alpha.vercel.app/users/canBookmark/${user.token}`)
+		fetch(`https://morning-news-backend-five.vercel.app/users/canBookmark/${user.token}`)
 			.then(response => response.json())
 			.then(data => {
 				if (data.result && data.canBookmark) {
@@ -34,11 +34,11 @@ function Article(props) {
 		iconStyle = { 'color': '#E9BE59' };
 	}
 
-// Hidden articles
+	// Hidden articles
 
 	const handleEyeClick = () => {
-			dispatch(hideArticle(props));
-		}
+		dispatch(hideArticle(props));
+	}
 
 
 	return (
