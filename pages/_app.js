@@ -31,6 +31,7 @@ function App({ Component, pageProps }) {
         <Head>
           <title>Morning News</title>
         </Head>
+       
         <Component {...pageProps} />
       </PersistGate>
 

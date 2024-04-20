@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import Article from './Article';
 import TopArticle from './TopArticle';
+import Header from './Header';
 import styles from '../styles/Home.module.css';
 
 function Home() {
@@ -41,6 +42,7 @@ function Home() {
       <Head>
         <title>Morning News - Home</title>
       </Head>
+      <Header />
       {topArticles}
       <div className={styles.articlesContainer}>
         {articles}
