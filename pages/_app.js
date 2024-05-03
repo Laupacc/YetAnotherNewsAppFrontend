@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import { Provider } from 'react-redux';
 import bookmarks from '../reducers/bookmarks';
 import user from '../reducers/user';
-import hiddenArticles from '../reducers/hiddenArticles';
+// import hiddenArticles from '../reducers/hiddenArticles';
 
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
-const reducers = combineReducers({ bookmarks, user, hiddenArticles });
+const reducers = combineReducers({ bookmarks, user });
 const persistConfig = { key: 'morningnews', storage };
 
 const store = configureStore({
@@ -31,10 +31,9 @@ function App({ Component, pageProps }) {
         <Head>
           <title>Morning News</title>
         </Head>
-       
+        <Header />
         <Component {...pageProps} />
       </PersistGate>
-
     </Provider>
   );
 }

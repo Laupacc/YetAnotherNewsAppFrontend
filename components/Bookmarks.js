@@ -2,7 +2,6 @@ import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import styles from '../styles/Bookmarks.module.css';
 import Article from './Article';
-import Header from './Header';
 
 function Bookmarks() {
 	const bookmarks = useSelector((state) => state.bookmarks.value);
@@ -19,7 +18,6 @@ function Bookmarks() {
 			<Head>
 				<title>Morning News - Bookmarks</title>
 			</Head>
-			<Header />
 			<div className={styles.container}>
 				<h2 className={styles.title}>Bookmarks</h2>
 				<div className={styles.articlesContainer}>

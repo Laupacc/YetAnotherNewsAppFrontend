@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../reducers/user';
 import { removeAllBookmark } from '../reducers/bookmarks';
-import { hideArticle, unhideArticle } from '../reducers/hiddenArticles';
+// import { hideArticle, unhideArticle } from '../reducers/hiddenArticles';
 import styles from '../styles/Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -57,8 +57,6 @@ function Header() {
 				}
 			});
 	};
-
-
 
 	const handleLogout = () => {
 		dispatch(logout());
@@ -121,7 +119,7 @@ function Header() {
 		<header className={styles.header}>
 			<div className={styles.logoContainer}>
 				<Moment className={styles.date} date={date} format="MMM Do YYYY" />
-				<h1 className={styles.title}>Morning News</h1>
+				<h1 className={styles.title}>Yet Another News App</h1>
 				{userSection}
 			</div>
 

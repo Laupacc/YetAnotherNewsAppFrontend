@@ -5,6 +5,7 @@ import Image from 'next/image';
 import styles from '../styles/Article.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 function Article(props) {
 	const dispatch = useDispatch();
@@ -41,18 +42,26 @@ function Article(props) {
 	// }
 
 
-	return (
+	return (<>
 		<div className={styles.articles}>
 			<div className={styles.articleHeader}>
-				<h3>{props.title}</h3>
+				<Link href={props.url}>
+					<a className={styles.title} target='blank'>
+						<h3>{props.title}</h3>
+					</a>
+				</Link>
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
-				{/* <FontAwesomeIcon onClick={() => handleEyeClick()} icon={faEyeSlash} className={styles.hiddenIcon} /> */}
 			</div>
-			<h4 style={{ textAlign: "right" }}>- {props.author}</h4>
-			<div className={styles.divider}></div>
-			<Image src={props.urlToImage} alt={props.title} width={600} height={314} />
+			<h4 style={{ textAlign: "right" }}>- {props.source.name} / {props.author}</h4>
+			<Link href={props.url}>
+				<a target='blank'>
+					<Image src={props.urlToImage} alt={props.title} width={600} height={314} />
+				</a>
+			</Link>
 			<p>{props.description}</p>
+			<div className={styles.divider}></div>
 		</div>
+	</>
 	);
 }
 

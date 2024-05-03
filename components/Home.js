@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import Head from 'next/head';
 import Article from './Article';
 import TopArticle from './TopArticle';
-import Header from './Header';
 import styles from '../styles/Home.module.css';
 
 function Home() {
@@ -23,12 +22,10 @@ function Home() {
   }, []);
 
   const articles = articlesData.map((data, i) => {
-    // const isHidden = hiddenArticles.some(hiddenArticle => hiddenArticle.title === data.title);
-    // if (!isHidden) {
     const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
     return <Article key={i} {...data} isBookmarked={isBookmarked} />;
-    // }
   });
+
 
   let topArticles;
   if (bookmarks.some(bookmark => bookmark.title === topArticle.title)) {
@@ -42,7 +39,6 @@ function Home() {
       <Head>
         <title>Morning News - Home</title>
       </Head>
-      <Header />
       {topArticles}
       <div className={styles.articlesContainer}>
         {articles}
