@@ -15,7 +15,7 @@ function Header() {
 	const user = useSelector((state) => state.user.value);
 
 	const [date, setDate] = useState('2050-11-22T23:59:59');
-	const [isModalVisible, setIsModalVisible] = useState(false);
+	const [isModalVisible, setIsModalVisible] = useState(false); ``
 	const [signUpUsername, setSignUpUsername] = useState('');
 	const [signUpPassword, setSignUpPassword] = useState('');
 	const [signInUsername, setSignInUsername] = useState('');
@@ -43,7 +43,7 @@ function Header() {
 
 	const handleConnection = () => {
 
-		fetch('http://morning-news-backend-five.vercel.app/users/signin', {
+		fetch('https://morning-news-backend-five.vercel.app/users/signin', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ username: signInUsername, password: signInPassword }),
@@ -58,6 +58,8 @@ function Header() {
 			});
 	};
 
+
+
 	const handleLogout = () => {
 		dispatch(logout());
 		dispatch(removeAllBookmark());
@@ -67,9 +69,9 @@ function Header() {
 		setIsModalVisible(!isModalVisible);
 	};
 	// Unhide articles
-	const handleEyeClick = () => {
-		dispatch(unhideArticle());
-	}
+	// const handleEyeClick = () => {
+	// 	dispatch(unhideArticle());
+	// }
 
 	let modalContent;
 	if (!user.isConnected) {
@@ -97,7 +99,7 @@ function Header() {
 			<div className={styles.logoutSection}>
 				<p>Welcome {user.username} / </p>
 				<button onClick={() => handleLogout()}>Logout</button>
-				<FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} />
+				{/* <FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} /> */}
 			</div>
 		);
 	} else {
@@ -110,7 +112,7 @@ function Header() {
 			userSection =
 				<div className={styles.headerIcons}>
 					<FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faUser} />
-					<FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} />
+					{/* <FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} /> */}
 				</div>
 		}
 	}

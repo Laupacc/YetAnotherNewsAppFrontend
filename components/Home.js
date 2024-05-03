@@ -8,7 +8,7 @@ import styles from '../styles/Home.module.css';
 
 function Home() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
-  const hiddenArticles = useSelector((state) => state.hiddenArticles.value);
+  // const hiddenArticles = useSelector((state) => state.hiddenArticles.value);
 
   const [articlesData, setArticlesData] = useState([]);
   const [topArticle, setTopArticle] = useState({});
@@ -23,11 +23,11 @@ function Home() {
   }, []);
 
   const articles = articlesData.map((data, i) => {
-    const isHidden = hiddenArticles.some(hiddenArticle => hiddenArticle.title === data.title);
-    if (!isHidden) {
-      const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
-      return <Article key={i} {...data} isBookmarked={isBookmarked} isHidden={isHidden} />;
-    }
+    // const isHidden = hiddenArticles.some(hiddenArticle => hiddenArticle.title === data.title);
+    // if (!isHidden) {
+    const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
+    return <Article key={i} {...data} isBookmarked={isBookmarked} />;
+    // }
   });
 
   let topArticles;

@@ -7,19 +7,19 @@ import Header from './Header';
 function Bookmarks() {
 	const bookmarks = useSelector((state) => state.bookmarks.value);
 
-  let articles = <p>No article</p>;
-  if (bookmarks.length > 0) {
-    articles = bookmarks.map((data, i) => {
-      return <Article key={i} {...data} isBookmarked />;
-    });
-  }
+	let articles = <p>No article bookmarked yet</p>;
+	if (bookmarks.length > 0) {
+		articles = bookmarks.map((data, i) => {
+			return <Article key={i} {...data} isBookmarked />;
+		});
+	}
 
 	return (
 		<div>
 			<Head>
 				<title>Morning News - Bookmarks</title>
 			</Head>
-			<Header/>
+			<Header />
 			<div className={styles.container}>
 				<h2 className={styles.title}>Bookmarks</h2>
 				<div className={styles.articlesContainer}>

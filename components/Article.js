@@ -36,9 +36,9 @@ function Article(props) {
 
 	// Hidden articles
 
-	const handleEyeClick = () => {
-		dispatch(hideArticle(props));
-	}
+	// const handleEyeClick = () => {
+	// 	dispatch(hideArticle(props));
+	// }
 
 
 	return (
@@ -46,7 +46,7 @@ function Article(props) {
 			<div className={styles.articleHeader}>
 				<h3>{props.title}</h3>
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
-				<FontAwesomeIcon onClick={() => handleEyeClick()} icon={faEyeSlash} className={styles.hiddenIcon} />
+				{/* <FontAwesomeIcon onClick={() => handleEyeClick()} icon={faEyeSlash} className={styles.hiddenIcon} /> */}
 			</div>
 			<h4 style={{ textAlign: "right" }}>- {props.author}</h4>
 			<div className={styles.divider}></div>
