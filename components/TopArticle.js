@@ -3,6 +3,7 @@ import { addBookmark, removeBookmark } from '../reducers/bookmarks';
 import styles from '../styles/TopArticle.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 
 function TopArticle(props) {
@@ -34,15 +35,23 @@ function TopArticle(props) {
 	}
 
 	return (
-		<div className={styles.topContainer}>
-			<img src={props.urlToImage} className={styles.image} alt={props.title} />
-			<div className={styles.topText}>
-				<h2 className={styles.topTitle}>{props.title}</h2>
-				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
-				<h4>{props.source.name} / {props.author}</h4>
-				<p>{props.description}</p>
+		<>
+			<div className={styles.topContainer}>
+				<a href={props.url} target='blank'>
+					<img src={props.urlToImage} className={styles.image} alt={props.title} />
+				</a>
+				<div className={styles.topText}>
+					<div className={styles.articleHeader}>
+						<a href={props.url} className={styles.topTitle} target='blank'>
+							<h2>{props.title}</h2>
+						</a>
+						<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
+					</div>
+					<p>{props.description}</p>
+					<h4 style={{ textAlign: "right" }}>{props.author}</h4>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
 

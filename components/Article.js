@@ -35,31 +35,22 @@ function Article(props) {
 		iconStyle = { 'color': '#E9BE59' };
 	}
 
-	// Hidden articles
-
-	// const handleEyeClick = () => {
-	// 	dispatch(hideArticle(props));
-	// }
-
 
 	return (<>
 		<div className={styles.articles}>
 			<div className={styles.articleHeader}>
-				<Link href={props.url}>
-					<a className={styles.title} target='blank'>
-						<h3>{props.title}</h3>
-					</a>
-				</Link>
+				<a href={props.url} className={styles.title} target='blank'>
+					<h3>{props.title}</h3>
+				</a>
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 			</div>
-			<h4 style={{ textAlign: "right" }}>- {props.source.name} / {props.author}</h4>
-			<Link href={props.url}>
-				<a target='blank'>
-					<Image src={props.urlToImage} alt={props.title} width={600} height={314} />
-				</a>
-			</Link>
+			<a href={props.url} target='blank'>
+				<Image src={props.urlToImage} alt={props.title} width={600} height={314} />
+			</a>
+			<div className={styles.articleDescription}>
 			<p>{props.description}</p>
-			<div className={styles.divider}></div>
+			<h4 style={{ textAlign: "right" }}>{props.author} - {props.source.name}</h4>
+			</div>
 		</div>
 	</>
 	);
