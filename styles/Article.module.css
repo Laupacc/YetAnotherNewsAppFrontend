@@ -4,6 +4,11 @@
   margin: 15px;
 }
 
+.image {
+  width: 400px;
+  height: auto;
+}
+
 .articleHeader {
   display: flex;
   justify-content: space-between;

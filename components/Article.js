@@ -45,11 +45,11 @@ function Article(props) {
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 			</div>
 			<a href={props.url} target='blank'>
-				<Image src={props.urlToImage} alt={props.title} width={600} height={314} />
+				<img src={props.urlToImage} alt={props.title} className={styles.image} />
 			</a>
 			<div className={styles.articleDescription}>
-			<p>{props.description}</p>
-			<h4 style={{ textAlign: "right" }}>{props.author} - {props.source.name}</h4>
+				<p>{props.description}</p>
+				<h4 style={{ textAlign: "right" }}>{props.author} - {props.source.name}</h4>
 			</div>
 		</div>
 	</>

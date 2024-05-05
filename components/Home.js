@@ -4,57 +4,55 @@ import Head from 'next/head';
 import Article from './Article';
 import TopArticle from './TopArticle';
 import styles from '../styles/Home.module.css';
-import ArticleCanada from './ArticlesCanada';
 
 function Home() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
-  // const hiddenArticles = useSelector((state) => state.hiddenArticles.value);
 
   const [articlesData, setArticlesData] = useState([]);
   const [topArticle, setTopArticle] = useState({});
-  const [articlesCanadaData, setArticlesCanadaData] = useState([]);
-  const [topArticleCanada, setTopArticleCanada] = useState({});
-
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
 
   useEffect(() => {
-    fetch('https://morning-news-backend-five.vercel.app/articles')
+    fetchArticles();
+  }, [selectedCategory, selectedCountry]);
+
+  const fetchArticles = () => {
+    let url = 'https://morning-news-backend-five.vercel.app/';
+    if (selectedCategory) {
+      url += `${selectedCategory}`;
+    }
+    if (selectedCountry) {
+      url += `${selectedCountry}`;
+    }
+
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         setTopArticle(data.articles[0]);
         setArticlesData(data.articles.filter((data, i) => i > 0));
+        const uniqueCategories = [...new Set(data.articles.map(article => article.category))];
+        setCategories(uniqueCategories);
       });
-  }, []);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleCountryChange = (country) => {
+    setSelectedCountry(country);
+  };
 
   const articles = articlesData.map((data, i) => {
     const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
     return <Article key={i} {...data} isBookmarked={isBookmarked} />;
   });
 
-
-  let topArticles;
-  if (bookmarks.some(bookmark => bookmark.title === topArticle.title)) {
-    topArticles = <TopArticle {...topArticle} isBookmarked={true} />
-  } else {
-    topArticles = <TopArticle {...topArticle} isBookmarked={false} />
-  }
-
-
-  useEffect(() => {
-    fetch('https://morning-news-backend-five.vercel.app/canada')
-      .then(response => response.json())
-      .then(data => {
-        // setTopArticleCanada(data.articles[0]);
-        setArticlesData(data.articles.filter((data, i) => i > 0));
-      });
-  }
-    , []);
-
-  const articlesCanada = articlesCanadaData.map((data, i) => {
-    const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
-    return <ArticleCanada key={i} {...data} isBookmarked={isBookmarked} />;
-  });
-
-
+  const topArticles = (
+    <TopArticle {...topArticle} isBookmarked={bookmarks.some(bookmark => bookmark.title === topArticle.title)} />
+  );
 
   return (
     <div>
@@ -62,9 +60,24 @@ function Home() {
         <title>Morning News - Home</title>
       </Head>
       {topArticles}
+      <div className={styles.filterContainer}>
+        <select value={selectedCategory || ''} onChange={(e) => handleCategoryChange(e.target.value)}>
+          <option value="">All Categories</option>
+          <option value="theverge">The Verge</option>
+          {categories.map((category, index) => (
+            <option key={index} value={category}>{category}</option>
+          ))}
+        </select>
+        {/* You can fetch and render countries dynamically here */}
+        <select value={selectedCountry || ''} onChange={(e) => handleCountryChange(e.target.value)}>
+          <option value="">All Countries</option>
+          <option value="USA">USA</option>
+          <option value="Canada">Canada</option>
+          {/* Add more countries dynamically */}
+        </select>
+      </div>
       <div className={styles.articlesContainer}>
         {articles}
-        {articlesCanada}
       </div>
     </div>
   );

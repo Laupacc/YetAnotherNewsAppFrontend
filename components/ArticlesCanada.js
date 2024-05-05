@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
-function ArticleCanada(props) {
+function ArticlesCanada(props) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.value);
 
@@ -45,7 +45,7 @@ function ArticleCanada(props) {
                 <FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
             </div>
             <a href={props.url} target='blank'>
-                <Image src={props.urlToImage} alt={props.title} width={600} height={314} />
+                <img src={props.urlToImage} alt={props.title} width={600} height={314} />
             </a>
             <div className={styles.articleDescription}>
                 <p>{props.description}</p>
@@ -56,4 +56,4 @@ function ArticleCanada(props) {
     );
 }
 
-export default ArticleCanada;
+export default ArticlesCanada;
