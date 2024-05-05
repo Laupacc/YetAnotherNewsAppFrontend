@@ -97,7 +97,6 @@ function Header() {
 			<div className={styles.logoutSection}>
 				<p>Welcome {user.username} / </p>
 				<button onClick={() => handleLogout()}>Logout</button>
-				{/* <FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} /> */}
 			</div>
 		);
 	} else {

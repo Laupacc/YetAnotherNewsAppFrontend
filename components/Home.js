@@ -5,12 +5,14 @@ import Article from './Article';
 import TopArticle from './TopArticle';
 import styles from '../styles/Home.module.css';
 
+
 function Home() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
 
   const [articlesData, setArticlesData] = useState([]);
   const [topArticle, setTopArticle] = useState({});
   const [categories, setCategories] = useState([]);
+  const [countries, setCountries] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(null);
 
@@ -21,10 +23,16 @@ function Home() {
   const fetchArticles = () => {
     let url = 'https://morning-news-backend-five.vercel.app/';
     if (selectedCategory) {
-      url += `${selectedCategory}`;
+      url += `category/${selectedCategory}`;
     }
     if (selectedCountry) {
-      url += `${selectedCountry}`;
+      url += `country/${selectedCountry}`;
+    }
+    if (selectedCountry && selectedCategory) {
+      url += `country/${selectedCountry}/category/${selectedCategory}`;
+    }
+    if (!selectedCategory && !selectedCountry) {
+      url += 'general';
     }
 
     fetch(url)
@@ -34,6 +42,8 @@ function Home() {
         setArticlesData(data.articles.filter((data, i) => i > 0));
         const uniqueCategories = [...new Set(data.articles.map(article => article.category))];
         setCategories(uniqueCategories);
+        const uniqueCountries = [...new Set(data.articles.map(article => article.country))];
+        setCountries(uniqueCountries);
       });
   };
 
@@ -54,28 +64,21 @@ function Home() {
     <TopArticle {...topArticle} isBookmarked={bookmarks.some(bookmark => bookmark.title === topArticle.title)} />
   );
 
+
+
   return (
     <div>
       <Head>
         <title>Morning News - Home</title>
       </Head>
+      <button onClick={() => handleCategoryChange("business")}>Business</button>
+      <button onClick={() => handleCategoryChange("entertainment")}>Entertainment</button>
+      <button onClick={() => handleCategoryChange("general")}>General</button>
+      <button onClick={() => handleCategoryChange("health")}>Health</button>
+      <button onClick={() => handleCategoryChange("science")}>Science</button>
+      <button onClick={() => handleCategoryChange("sports")}>Sports</button>
+      <button onClick={() => handleCategoryChange("technology")}>Technology</button>
       {topArticles}
-      <div className={styles.filterContainer}>
-        <select value={selectedCategory || ''} onChange={(e) => handleCategoryChange(e.target.value)}>
-          <option value="">All Categories</option>
-          <option value="theverge">The Verge</option>
-          {categories.map((category, index) => (
-            <option key={index} value={category}>{category}</option>
-          ))}
-        </select>
-        {/* You can fetch and render countries dynamically here */}
-        <select value={selectedCountry || ''} onChange={(e) => handleCountryChange(e.target.value)}>
-          <option value="">All Countries</option>
-          <option value="USA">USA</option>
-          <option value="Canada">Canada</option>
-          {/* Add more countries dynamically */}
-        </select>
-      </div>
       <div className={styles.articlesContainer}>
         {articles}
       </div>
