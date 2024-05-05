@@ -48,8 +48,8 @@ function Article(props) {
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 			</div>
 			<div className={styles.articleDescription}>
-				<p>{props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
-				<h4 style={{ textAlign: "right" }}>{props.creator}</h4>
+			<p>{props.description && props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
+				<h4 style={{ textAlign: "right" }}>{props.pubDate}</h4>
 			</div>
 		</div>
 	</>

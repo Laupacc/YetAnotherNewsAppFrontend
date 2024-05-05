@@ -48,7 +48,7 @@ function TopArticle(props) {
 						<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 					</div>
 					<p>{props.description}</p>
-					<h4 style={{ textAlign: "right" }}>{props.creator}</h4>
+					<h4 style={{ textAlign: "right" }}>{props.pubDate}</h4>
 				</div>
 			</div>
 		</>
