@@ -37,18 +37,18 @@ function TopArticle(props) {
 	return (
 		<>
 			<div className={styles.topContainer}>
-				<a href={props.url} target='blank'>
-					<img src={props.urlToImage} className={styles.image} alt={props.title} />
+				<a href={props.link} target='blank'>
+					<img src={props.image_url} className={styles.image} alt={props.title} />
 				</a>
 				<div className={styles.topText}>
 					<div className={styles.articleHeader}>
-						<a href={props.url} className={styles.topTitle} target='blank'>
+						<a href={props.link} className={styles.topTitle} target='blank'>
 							<h2>{props.title}</h2>
 						</a>
 						<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 					</div>
 					<p>{props.description}</p>
-					<h4 style={{ textAlign: "right" }}>{props.author}</h4>
+					<h4 style={{ textAlign: "right" }}>{props.creator}</h4>
 				</div>
 			</div>
 		</>

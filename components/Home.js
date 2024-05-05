@@ -12,7 +12,7 @@ function Home() {
   const [topArticle, setTopArticle] = useState({});
   const [categories, setCategories] = useState([]);
   const [countries, setCountries] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('general');
+  const [selectedCategory, setSelectedCategory] = useState('top');
   const [selectedCountry, setSelectedCountry] = useState('unitedstates');
 
 
@@ -23,13 +23,6 @@ function Home() {
 
   const fetchArticles = (country, category) => {
     let url = `https://morning-news-backend-five.vercel.app/${country}/${category}`;
-    // if (category && !country) {
-    //   url = `https://morning-news-backend-five.vercel.app/unitedstates/${category}`;
-    // }
-    // if (!category && !country) {
-    //   url = `https://morning-news-backend-five.vercel.app/unitedstates/general`;
-    // }
-
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -74,7 +67,7 @@ function Home() {
       </div>
 
       <div className={styles.categories}>
-        <button className={`${styles.button} ${selectedCategory === 'general' && styles.selected}`} onClick={() => handleCategoryChange('general')}>General</button>
+        <button className={`${styles.button} ${selectedCategory === 'top' && styles.selected}`} onClick={() => handleCategoryChange('top')}>Top</button>
         <button className={`${styles.button} ${selectedCategory === 'business' && styles.selected}`} onClick={() => handleCategoryChange('business')}>Business</button>
         <button className={`${styles.button} ${selectedCategory === 'entertainment' && styles.selected}`} onClick={() => handleCategoryChange('entertainment')}>Entertainment</button>
         <button className={`${styles.button} ${selectedCategory === 'health' && styles.selected}`} onClick={() => handleCategoryChange('health')}>Health</button>

@@ -38,18 +38,18 @@ function Article(props) {
 
 	return (<>
 		<div className={styles.articles}>
+			<a href={props.link} target='blank'>
+				<img src={props.image_url} alt={props.title} className={styles.image} />
+			</a>
 			<div className={styles.articleHeader}>
-				<a href={props.url} className={styles.title} target='blank'>
+				<a href={props.link} className={styles.title} target='blank'>
 					<h3>{props.title}</h3>
 				</a>
 				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
 			</div>
-			<a href={props.url} target='blank'>
-				<img src={props.urlToImage} alt={props.title} className={styles.image} />
-			</a>
 			<div className={styles.articleDescription}>
-				<p>{props.description}</p>
-				<h4 style={{ textAlign: "right" }}>{props.author} - {props.source.name}</h4>
+				<p>{props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
+				<h4 style={{ textAlign: "right" }}>{props.creator}</h4>
 			</div>
 		</div>
 	</>
