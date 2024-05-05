@@ -22,17 +22,14 @@ function Home() {
 
   const fetchArticles = () => {
     let url = 'https://morning-news-backend-five.vercel.app/';
-    if (selectedCategory) {
-      url += `category/${selectedCategory}`;
-    }
-    if (selectedCountry) {
-      url += `country/${selectedCountry}`;
-    }
     if (selectedCountry && selectedCategory) {
-      url += `country/${selectedCountry}/category/${selectedCategory}`;
+      url += `${selectedCountry}/${selectedCategory}`;
     }
-    if (!selectedCategory && !selectedCountry) {
-      url += 'general';
+    if (selectedCountry && !selectedCategory) {
+      url += `${selectedCountry}/general`;
+    }
+    if (!selectedCountry && !selectedCategory) {
+      url += `unitedstates/general`;
     }
 
     fetch(url)
@@ -46,12 +43,11 @@ function Home() {
         setCountries(uniqueCountries);
       });
   };
-
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
 
-  const handleCountryChange = (country) => {
+  const handleCountryClick = (country) => {
     setSelectedCountry(country);
   };
 
@@ -71,13 +67,21 @@ function Home() {
       <Head>
         <title>Morning News - Home</title>
       </Head>
-      <button onClick={() => handleCategoryChange("business")}>Business</button>
-      <button onClick={() => handleCategoryChange("entertainment")}>Entertainment</button>
-      <button onClick={() => handleCategoryChange("general")}>General</button>
-      <button onClick={() => handleCategoryChange("health")}>Health</button>
-      <button onClick={() => handleCategoryChange("science")}>Science</button>
-      <button onClick={() => handleCategoryChange("sports")}>Sports</button>
-      <button onClick={() => handleCategoryChange("technology")}>Technology</button>
+
+
+      <div>
+        {countries.map((country, index) => (
+          <button key={index} onClick={() => handleCountryClick(country)}>{country.toUpperCase()}</button>
+        ))}
+      </div>
+      {selectedCountry && (
+        <div>
+          {categories.map((category, index) => (
+            <button key={index} onClick={() => handleCategoryChange(category)}>{category.toUpperCase()}</button>
+          ))}
+        </div>
+      )}
+
       {topArticles}
       <div className={styles.articlesContainer}>
         {articles}
