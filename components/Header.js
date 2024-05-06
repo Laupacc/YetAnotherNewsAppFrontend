@@ -6,8 +6,13 @@ import styles from '../styles/Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Moment from 'react-moment';
-import { Modal } from 'antd';
+import { Modal, Popover } from 'antd';
 import Link from 'next/link';
+import { BiSolidBookmarkAlt } from "react-icons/bi";
+import { HiOutlineLogout } from "react-icons/hi";
+import { RiArticleLine } from "react-icons/ri";
+
+
 
 function Header() {
 	const dispatch = useDispatch();
@@ -41,7 +46,6 @@ function Header() {
 	};
 
 	const handleConnection = () => {
-
 		fetch('https://morning-news-backend-five.vercel.app/users/signin', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -65,6 +69,18 @@ function Header() {
 	const showModal = () => {
 		setIsModalVisible(!isModalVisible);
 	};
+
+	const popContent = (
+		<div>
+			<p>Are you sure you want to logout?</p>
+			<div>
+				<button onClick={() => handleLogout()}>Yes</button>
+				<button>No</button>
+
+			</div>
+		</div>
+	);
+
 
 	let modalContent;
 	if (!user.isConnected) {
@@ -90,8 +106,11 @@ function Header() {
 	if (user.token) {
 		userSection = (
 			<div className={styles.logoutSection}>
-				<p>Welcome back {user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase()} / </p>
-				<button onClick={() => handleLogout()}>Logout</button>
+				<div className={styles.welcome}>Welcome back {user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase()}</div>
+
+				<Popover content={popContent} trigger="click">
+					<HiOutlineLogout size={30} className={styles.logoutIcon} />
+				</Popover>
 			</div>
 		);
 	} else {
@@ -110,15 +129,21 @@ function Header() {
 
 	return (
 		<header className={styles.header}>
+			<div className={styles.title}>Yet Another News App</div>
 			<div className={styles.logoContainer}>
 				<Moment className={styles.date} date={date} format="MMM Do YYYY" />
-				<h1 className={styles.title}>Yet Another News App</h1>
 				{userSection}
 			</div>
 
 			<div className={styles.linkContainer}>
-				<Link href="/"><span className={styles.link}>Articles</span></Link>
-				<Link href="/bookmarks"><span className={styles.link}>Bookmarks</span></Link>
+				<div className={styles.linkIcons}>
+					<Link href="/"><span>Articles</span></Link>
+					<Link href="/"><RiArticleLine size={30} /></Link>
+				</div>
+				<div className={styles.linkIcons}>
+					<Link href="/bookmarks"><span>Bookmarks</span></Link>
+					<Link href="/bookmarks"><BiSolidBookmarkAlt size={30} /></Link>
+				</div>
 			</div>
 
 			{isModalVisible && <div id="react-modals">

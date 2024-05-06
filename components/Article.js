@@ -6,6 +6,7 @@ import styles from '../styles/Article.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { BiSolidBookmarkAltPlus, BiSolidBookmarkAltMinus } from "react-icons/bi";
 
 function Article(props) {
 	const dispatch = useDispatch();
@@ -31,8 +32,10 @@ function Article(props) {
 	}
 
 	let iconStyle = {};
+	let bookmarkIcon = <BiSolidBookmarkAltPlus style={iconStyle} className={styles.bookmarkIcon} size={30}/>;
 	if (props.isBookmarked) {
 		iconStyle = { 'color': '#E9BE59' };
+		bookmarkIcon = <BiSolidBookmarkAltMinus style={iconStyle} className={styles.bookmarkIcon} size={30} />;
 	}
 
 
@@ -45,7 +48,9 @@ function Article(props) {
 				<a href={props.link} className={styles.title} target='blank'>
 					<h3>{props.title}</h3>
 				</a>
-				<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
+				<div onClick={() => handleBookmarkClick()}>
+					{bookmarkIcon}
+				</div>
 			</div>
 			<div className={styles.articleDescription}>
 				<p>{props.description && props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>

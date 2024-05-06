@@ -4,6 +4,7 @@ import styles from '../styles/TopArticle.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
+import { BiSolidBookmarkAltPlus, BiSolidBookmarkAltMinus } from "react-icons/bi";
 
 
 function TopArticle(props) {
@@ -30,9 +31,12 @@ function TopArticle(props) {
 	}
 
 	let iconStyle = {};
+	let bookmarkIcon = <BiSolidBookmarkAltPlus style={iconStyle} className={styles.bookmarkIcon} size={30} />;
 	if (props.isBookmarked) {
 		iconStyle = { 'color': '#E9BE59' };
+		bookmarkIcon = <BiSolidBookmarkAltMinus style={iconStyle} className={styles.bookmarkIcon} size={30} />;
 	}
+
 
 	return (
 		<>
@@ -45,7 +49,9 @@ function TopArticle(props) {
 						<a href={props.link} className={styles.topTitle} target='blank'>
 							<h2>{props.title}</h2>
 						</a>
-						<FontAwesomeIcon onClick={() => handleBookmarkClick()} icon={faBookmark} style={iconStyle} className={styles.bookmarkIcon} />
+						<div onClick={() => handleBookmarkClick()}>
+							{bookmarkIcon}
+						</div>
 					</div>
 					<p>{props.description}</p>
 					<h4 style={{ textAlign: "right" }}>{props.pubDate}</h4>

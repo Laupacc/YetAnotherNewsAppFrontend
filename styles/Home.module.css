@@ -37,7 +37,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 1.5rem;
+  margin: 0 1.5rem 1.5rem 1.5rem;
 }
 
 .buttonCountry {
@@ -60,14 +60,14 @@
   cursor: pointer;
 }
 .form {
-  position: absolute;
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-end;
   right: 0;
   margin-right: 1rem;
+  margin-top: 1rem;
 }
-.searchInput{
+.searchInput {
   width: 15rem;
   height: 2rem;
   border: 1px solid gray;
