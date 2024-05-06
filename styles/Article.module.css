@@ -1,12 +1,12 @@
 .articles {
-  width: 400px;
+  width: 25rem;
   height: 27rem;
-  margin: 15px;
+  margin: 0.9rem;
 }
 
 .image {
-  width: 400px;
-  height: 250px;
+  width: 25rem;
+  height: 16rem;
   object-fit: cover;
   overflow: hidden;
 }

@@ -3,11 +3,11 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
 .sectionTitle {
-  margin-left: 25px;
+  margin-left: 1.5rem;
 }
 
 .categories {
@@ -35,11 +35,11 @@
 
 .countries {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
 }
+
 .buttonCountry {
   font-size: 1rem;
   color: gray;
@@ -53,4 +53,26 @@
   border-bottom: 1.5px solid gray;
   border-right: 1.5px solid gray;
   font-weight: 800;
+}
+
+.searchBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.form {
+  position: absolute;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  right: 0;
+  margin-right: 1rem;
+}
+.searchInput{
+  width: 15rem;
+  height: 2rem;
+  border: 1px solid gray;
+  border-radius: 5px;
+  text-align: left;
+  padding-left: 0.5rem;
 }

@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../reducers/user';
 import { removeAllBookmark } from '../reducers/bookmarks';
-// import { hideArticle, unhideArticle } from '../reducers/hiddenArticles';
 import styles from '../styles/Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
 import Moment from 'react-moment';
 import { Modal } from 'antd';
 import Link from 'next/link';
@@ -66,10 +65,6 @@ function Header() {
 	const showModal = () => {
 		setIsModalVisible(!isModalVisible);
 	};
-	// Unhide articles
-	// const handleEyeClick = () => {
-	// 	dispatch(unhideArticle());
-	// }
 
 	let modalContent;
 	if (!user.isConnected) {
@@ -95,7 +90,7 @@ function Header() {
 	if (user.token) {
 		userSection = (
 			<div className={styles.logoutSection}>
-				<p>Welcome {user.username} / </p>
+				<p>Welcome back {user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase()} / </p>
 				<button onClick={() => handleLogout()}>Logout</button>
 			</div>
 		);
@@ -109,7 +104,6 @@ function Header() {
 			userSection =
 				<div className={styles.headerIcons}>
 					<FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faUser} />
-					{/* <FontAwesomeIcon onClick={() => handleEyeClick()} className={styles.userSection} icon={faEye} /> */}
 				</div>
 		}
 	}

@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Article from './Article';
 import TopArticle from './TopArticle';
 import styles from '../styles/Home.module.css';
+import { FcSearch } from "react-icons/fc";
+
 
 function Home() {
   const bookmarks = useSelector((state) => state.bookmarks.value);
@@ -48,7 +50,7 @@ function Home() {
         const uniqueArticles = [];
         const uniqueTitles = new Set();
 
-        // Iterate through articles, only add unique titles to uniqueArticles
+
         data.articles.forEach(article => {
           if (!uniqueTitles.has(article.title)) {
             uniqueArticles.push(article);
@@ -88,24 +90,27 @@ function Home() {
   return (
     <div>
       <Head>
-        <title>Morning News - Home</title>
+        <title>Yet another news app / Home</title>
       </Head>
+
+      <form className={styles.form} onSubmit={handleSearch}>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={handleChange}
+          className={styles.searchInput}
+        />
+        <button type="submit" className={styles.searchBtn}><FcSearch size={24} /></button>
+      </form>
 
       <div className={styles.countries}>
         <button className={`${styles.buttonCountry} ${selectedCountry === 'unitedstates' && styles.selectedCountry}`} onClick={() => handleCountryChange('unitedstates')}>United States</button>
         <button className={`${styles.buttonCountry} ${selectedCountry === 'canada' && styles.selectedCountry}`} onClick={() => handleCountryChange('canada')}>Canada</button>
         <button className={`${styles.buttonCountry} ${selectedCountry === 'unitedkingdom' && styles.selectedCountry}`} onClick={() => handleCountryChange('unitedkingdom')}>United Kingdom</button>
         <button className={`${styles.buttonCountry} ${selectedCountry === 'france' && styles.selectedCountry}`} onClick={() => handleCountryChange('france')}>France</button>
-        <form onSubmit={handleSearch}>
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchTerm}
-            onChange={handleChange}
-          />
-          <button type="submit">Search</button>
-        </form>
       </div>
+
 
       <div className={styles.categories}>
         <button className={`${styles.button} ${selectedCategory === 'top' && styles.selected}`} onClick={() => handleCategoryChange('top')}>Top</button>
@@ -117,21 +122,23 @@ function Home() {
         <button className={`${styles.button} ${selectedCategory === 'technology' && styles.selected}`} onClick={() => handleCategoryChange('technology')}>Technology</button>
       </div>
 
-
-      {searchResults.length > 0 && (
-        <div className={styles.articlesContainer}>
-          {searchResults.map((data, i) => {
-            const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
-            return <Article key={i} {...data} isBookmarked={isBookmarked} />;
-          })}
-        </div>
-      )}
-
-
-      {topArticles}
-      <div className={styles.articlesContainer}>
-        {articles}
-      </div>
+      {
+        searchResults.length > 0 ? (
+          <div className={styles.articlesContainer}>
+            {searchResults.map((data, i) => {
+              const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
+              return <Article key={i} {...data} isBookmarked={isBookmarked} />;
+            })}
+          </div>
+        ) : (
+          <>
+            {topArticles}
+            <div className={styles.articlesContainer}>
+              {articles}
+            </div>
+          </>
+        )
+      }
 
     </div >
   );

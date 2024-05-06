@@ -1,16 +1,16 @@
 .container {
-	width: 100vw;
-	padding: 10px 0px 10px 10px;
+  width: 100vw;
+  padding: 0.6rem 0 0.6rem 0;
 }
 
 .articlesContainer {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
 }
 
 .title {
-	margin: 30px;
+  margin: 1.8rem;
 }
