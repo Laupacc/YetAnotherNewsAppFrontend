@@ -16,26 +16,8 @@ function Home() {
   const [countries, setCountries] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('top');
   const [selectedCountry, setSelectedCountry] = useState('unitedstates');
-
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetch(`https://morning-news-backend-five.vercel.app/search?q=${searchTerm}`)
-      .then(response => response.json())
-      .then(data => {
-        setSearchResults(data.articles);
-      })
-      .catch(error => {
-        console.error("Error searching:", error);
-      });
-  };
-
-  const handleChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-
 
   useEffect(() => {
     fetchArticles(selectedCountry, selectedCategory);
@@ -49,7 +31,6 @@ function Home() {
       .then(data => {
         const uniqueArticles = [];
         const uniqueTitles = new Set();
-
 
         data.articles.forEach(article => {
           if (!uniqueTitles.has(article.title)) {
@@ -68,13 +49,38 @@ function Home() {
       });
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    fetch(`https://morning-news-backend-five.vercel.app/search?qInMeta=${searchTerm}`)
+      .then(response => response.json())
+      .then(data => {
+        const uniqueArticles = [];
+        const uniqueTitles = new Set();
+        data.articles.forEach(article => {
+          if (!uniqueTitles.has(article.title)) {
+            uniqueArticles.push(article);
+            uniqueTitles.add(article.title);
+          }
+        });
+        setSearchResults(uniqueArticles);
+      })
+      .catch(error => {
+        console.error("Error searching:", error);
+      });
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
 
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
+    setSearchResults([]);
   };
 
   const handleCountryChange = (country) => {
     setSelectedCountry(country);
+    setSearchResults([]); 
   };
 
 
@@ -98,7 +104,7 @@ function Home() {
           type="text"
           placeholder="Search..."
           value={searchTerm}
-          onChange={handleChange}
+          onChange={handleSearchChange}
           className={styles.searchInput}
         />
         <button type="submit" className={styles.searchBtn}><FcSearch size={24} /></button>
@@ -115,30 +121,33 @@ function Home() {
       <div className={styles.categories}>
         <button className={`${styles.button} ${selectedCategory === 'top' && styles.selected}`} onClick={() => handleCategoryChange('top')}>Top</button>
         <button className={`${styles.button} ${selectedCategory === 'business' && styles.selected}`} onClick={() => handleCategoryChange('business')}>Business</button>
+        <button className={`${styles.button} ${selectedCategory === 'politics' && styles.selected}`} onClick={() => handleCategoryChange('politics')}>Politics</button>
         <button className={`${styles.button} ${selectedCategory === 'entertainment' && styles.selected}`} onClick={() => handleCategoryChange('entertainment')}>Entertainment</button>
         <button className={`${styles.button} ${selectedCategory === 'health' && styles.selected}`} onClick={() => handleCategoryChange('health')}>Health</button>
         <button className={`${styles.button} ${selectedCategory === 'science' && styles.selected}`} onClick={() => handleCategoryChange('science')}>Science</button>
         <button className={`${styles.button} ${selectedCategory === 'sports' && styles.selected}`} onClick={() => handleCategoryChange('sports')}>Sports</button>
         <button className={`${styles.button} ${selectedCategory === 'technology' && styles.selected}`} onClick={() => handleCategoryChange('technology')}>Technology</button>
+        <button className={`${styles.button} ${selectedCategory === 'education' && styles.selected}`} onClick={() => handleCategoryChange('education')}>Education</button>
+        <button className={`${styles.button} ${selectedCategory === 'environment' && styles.selected}`} onClick={() => handleCategoryChange('environment')}>Environment</button>
+        <button className={`${styles.button} ${selectedCategory === 'food' && styles.selected}`} onClick={() => handleCategoryChange('food')}>Food</button>
+        <button className={`${styles.button} ${selectedCategory === 'lifestyle' && styles.selected}`} onClick={() => handleCategoryChange('lifestyle')}>Lifestyle</button>
       </div>
 
-      {
-        searchResults.length > 0 ? (
+      {searchResults.length > 0 ? (
+        <div className={styles.articlesContainer}>
+          {searchResults.map((data, i) => {
+            const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
+            return <Article key={i} {...data} isBookmarked={isBookmarked} />;
+          })}
+        </div>
+      ) : (
+        <>
+          {topArticles}
           <div className={styles.articlesContainer}>
-            {searchResults.map((data, i) => {
-              const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
-              return <Article key={i} {...data} isBookmarked={isBookmarked} />;
-            })}
+            {articles}
           </div>
-        ) : (
-          <>
-            {topArticles}
-            <div className={styles.articlesContainer}>
-              {articles}
-            </div>
-          </>
-        )
-      }
+        </>
+      )}
 
     </div >
   );
