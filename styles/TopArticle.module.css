@@ -1,34 +1,51 @@
 .topContainer {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0.6rem;
-  padding: 1.25rem 0 1.25rem 0;
+}
+
+.articles {
+  width: 37.5rem;
+  margin: 2rem 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .articleHeader {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: fit-content;
+  margin: 0rem 0.5rem;
 }
-.topTitle {
-  text-decoration: none;
-  color: #000;
+
+.articleDescription {
+  margin: 0 0.5rem;
+  padding: 0 0.5rem;
+  text-align: justify;
 }
 
 .image {
-  width: 37.5rem;
+  width: 100%;
   height: 16rem;
   object-fit: cover;
   overflow: hidden;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
-.topText {
-  background-color: #fff;
-  border: 0.5px rgb(233, 190, 89) solid;
-  width: 37.5rem;
-  justify-content: center;
-  padding: 1.25rem;
-  box-sizing: border-box;
+.text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title {
+  text-decoration: none;
+  color: #000;
+  font-size: 1.1rem;
+  padding: 0 0.5rem;
 }
 
 .bookmarkIcon {
@@ -38,4 +55,12 @@
 
 .bookmarkIcon:hover {
   opacity: 0.6;
+}
+
+.footer {
+  text-align: right;
+  margin-top: auto;
+  padding: 0 0.5rem;
+  opacity: 0.6;
+  font-size: 0.8rem;
 }

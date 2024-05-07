@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap");
 
 body {
   padding: 0;
@@ -9,28 +9,16 @@ body {
 
 * {
   box-sizing: border-box;
-  font-family: 'Newsreader', serif;
   font-weight: 300;
 }
 
 h2 {
   font-weight: 600;
-  font-size: 26px;
   margin: 0;
 }
 
 h3 {
   font-weight: 600;
-  margin: 0;
-  width: 95%;
-}
-
-h4 {
-  margin: 0;
-  margin-top: 5px;
-  font-size: 12px;
-  opacity: 0.6;
-  letter-spacing: 1px;
 }
 
 input {
@@ -42,19 +30,5 @@ input {
 
 input:focus {
   outline: none;
+  background-color: rgba(165, 42, 42, 0.103);
 }
-
-/* button {
-  height: 25px;
-  font-size: 16px;
-  font-weight: 600;
-  color: rgb(242, 185, 54);
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-button:hover {
-  outline: none;
-  text-shadow: 1px 1px 0px rgb(134, 131, 131);
-} */

@@ -4,7 +4,7 @@
 }
 
 .header {
-  border-bottom: 2px rgb(233, 190, 89) solid;
+  border-bottom: 2px rgb(241, 217, 160) solid;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -12,7 +12,7 @@
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   font-family: "Old London";
   text-shadow: 1px 1px 0px #000;
   margin: 1rem;
@@ -28,7 +28,7 @@
 
 .linkContainer {
   width: 32rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -41,14 +41,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: gray;
+  color: black;
   margin-left: 0.5rem;
   text-align: center;
   font-size: 1rem;
 }
 .linkIcons:hover {
   cursor: pointer;
-  color: teal;
+  color: gray;
   opacity: 0.8;
 }
 
@@ -97,7 +97,7 @@
 
 .logoutIcon {
   margin-left: 1rem;
-  color: teal;
+  color: brown;
 }
 
 .logoutIcon:hover {
@@ -114,4 +114,33 @@
   align-items: center;
   justify-content: space-around;
   width: 12vw;
+}
+
+.popBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: brown;
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
+.popBtn:hover {
+  background-color: rgba(165, 42, 42, 0.103);
+  border-radius: 5px;
+}
+
+.loginBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: rgb(85, 85, 226);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+}
+.loginBtn:hover {
+  background-color: rgba(85, 85, 226, 0.15);
+  border-radius: 5px;
 }

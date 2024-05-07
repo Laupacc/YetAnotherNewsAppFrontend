@@ -3,7 +3,14 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.divider {
+  width: 13%;
+  height: 2px;
+  background-color: rgb(241, 217, 160);
+  margin: 0 auto;
 }
 
 .sectionTitle {
@@ -20,8 +27,7 @@
 
 .button {
   font-size: 1.3rem;
-  /* color: rgb(242, 185, 54); */
-  color: teal;
+  color: brown;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -29,8 +35,8 @@
 
 .button.selected,
 .button:hover {
-  border-bottom: 2px solid rgb(242, 185, 54);
-  border-right: 2px solid rgb(242, 185, 54);
+  border-bottom: 2px solid rgb(251, 204, 94);
+  border-right: 2px solid rgb(251, 204, 94);
 }
 
 .countries {
@@ -42,7 +48,7 @@
 
 .buttonCountry {
   font-size: 1rem;
-  color: gray;
+  color: black;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -50,8 +56,8 @@
 }
 .buttonCountry.selectedCountry,
 .buttonCountry:hover {
-  border-bottom: 2px solid rgb(242, 185, 54);
-  border-right: 2px solid rgb(242, 185, 54);
+  border-bottom: 2px solid rgb(251, 204, 94);
+  border-right: 2px solid rgb(251, 204, 94);
 }
 
 .searchBtn {

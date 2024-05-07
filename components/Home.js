@@ -76,13 +76,15 @@ function Home() {
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     setSearchResults([]);
+    if (searchResults.length > 0) {
+      setSearchTerm('');
+    }
   };
 
   const handleCountryChange = (country) => {
     setSelectedCountry(country);
-    setSearchResults([]); 
+    setSearchResults([]);
   };
-
 
   const articles = articlesData.map((data, i) => {
     const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
@@ -92,6 +94,36 @@ function Home() {
   const topArticles = (
     <TopArticle {...topArticle} isBookmarked={bookmarks.some(bookmark => bookmark.title === topArticle.title)} />
   );
+
+  const categoryTitles = {
+    top: 'Top',
+    business: 'Business',
+    politics: 'Politics',
+    entertainment: 'Entertainment',
+    health: 'Health',
+    science: 'Science',
+    sports: 'Sports',
+    technology: 'Technology',
+    education: 'Education',
+    environment: 'Environment',
+    food: 'Food',
+    lifestyle: 'Lifestyle'
+  };
+
+  const categoryTitlesFR = {
+    top: 'Top',
+    business: 'Business',
+    politics: 'Politique',
+    entertainment: 'Divertissement',
+    health: 'Santé',
+    science: 'Science',
+    sports: 'Sports',
+    technology: 'Technologie',
+    education: 'Éducation',
+    environment: 'Environnement',
+    food: 'Cuisine',
+    lifestyle: 'Lifestyle'
+  };
 
   return (
     <div>
@@ -117,8 +149,21 @@ function Home() {
         <button className={`${styles.buttonCountry} ${selectedCountry === 'france' && styles.selectedCountry}`} onClick={() => handleCountryChange('france')}>France</button>
       </div>
 
+      <div className={styles.divider}></div>
 
       <div className={styles.categories}>
+        {Object.keys(categoryTitles).map(category => (
+          <button
+            key={category}
+            className={`${styles.button} ${selectedCategory === category && styles.selected}`}
+            onClick={() => handleCategoryChange(category)}
+          >
+            {selectedCountry === 'france' ? categoryTitlesFR[category] : categoryTitles[category]}
+          </button>
+        ))}
+      </div>
+
+      {/* <div className={styles.categories}>
         <button className={`${styles.button} ${selectedCategory === 'top' && styles.selected}`} onClick={() => handleCategoryChange('top')}>Top</button>
         <button className={`${styles.button} ${selectedCategory === 'business' && styles.selected}`} onClick={() => handleCategoryChange('business')}>Business</button>
         <button className={`${styles.button} ${selectedCategory === 'politics' && styles.selected}`} onClick={() => handleCategoryChange('politics')}>Politics</button>
@@ -131,7 +176,7 @@ function Home() {
         <button className={`${styles.button} ${selectedCategory === 'environment' && styles.selected}`} onClick={() => handleCategoryChange('environment')}>Environment</button>
         <button className={`${styles.button} ${selectedCategory === 'food' && styles.selected}`} onClick={() => handleCategoryChange('food')}>Food</button>
         <button className={`${styles.button} ${selectedCategory === 'lifestyle' && styles.selected}`} onClick={() => handleCategoryChange('lifestyle')}>Lifestyle</button>
-      </div>
+      </div> */}
 
       {searchResults.length > 0 ? (
         <div className={styles.articlesContainer}>

@@ -41,20 +41,26 @@ function TopArticle(props) {
 	return (
 		<>
 			<div className={styles.topContainer}>
-				<a href={props.link} target='blank'>
-					<img src={props.image_url} className={styles.image} alt={props.title} />
-				</a>
-				<div className={styles.topText}>
-					<div className={styles.articleHeader}>
-						<a href={props.link} className={styles.topTitle} target='blank'>
-							<h2>{props.title}</h2>
-						</a>
-						<div onClick={() => handleBookmarkClick()}>
-							{bookmarkIcon}
+				<div className={styles.articles}>
+					<a href={props.link} target='blank'>
+						<img src={props.image_url} className={styles.image} alt={props.title} />
+					</a>
+					<div className={styles.text}>
+						<div className={styles.articleHeader}>
+							<a href={props.link} className={styles.title} target='blank'>
+								<h2>{props.title}</h2>
+							</a>
+							<div onClick={() => handleBookmarkClick()}>
+								{bookmarkIcon}
+							</div>
 						</div>
+						<div className={styles.articleDescription}>
+							<p>{props.description && props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
+						</div>
+						{/* <div className={styles.footer}>
+							<h4>{props.source_id.charAt(0).toUpperCase() + props.source_id.slice(1).toLowerCase() || ''} - {props.pubDate}</h4>
+						</div> */}
 					</div>
-					<p>{props.description}</p>
-					<h4 style={{ textAlign: "right" }}>{props.pubDate}</h4>
 				</div>
 			</div>
 		</>
