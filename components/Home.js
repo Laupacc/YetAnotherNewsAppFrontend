@@ -122,7 +122,7 @@ function Home() {
     education: 'Éducation',
     environment: 'Environnement',
     food: 'Cuisine',
-    lifestyle: 'Lifestyle'
+    lifestyle: 'Mode de vie'
   };
 
   return (
