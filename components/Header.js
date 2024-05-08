@@ -4,17 +4,17 @@ import { login, logout } from '../reducers/user';
 import { removeAllBookmark } from '../reducers/bookmarks';
 import styles from '../styles/Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FaUserAstronaut } from "react-icons/fa6";
 import Moment from 'react-moment';
-import { Modal } from 'antd';
 import Link from 'next/link';
 import { BiSolidBookmarkAlt } from "react-icons/bi";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RiArticleLine } from "react-icons/ri";
 import Popover from '@mui/material/Popover';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 
 function Header() {
@@ -22,12 +22,12 @@ function Header() {
 	const user = useSelector((state) => state.user.value);
 
 	const [date, setDate] = useState('2050-11-22T23:59:59');
-	const [isModalVisible, setIsModalVisible] = useState(false); ``
 	const [signUpUsername, setSignUpUsername] = useState('');
 	const [signUpPassword, setSignUpPassword] = useState('');
 	const [signInUsername, setSignInUsername] = useState('');
 	const [signInPassword, setSignInPassword] = useState('');
 	const [anchorEl, setAnchorEl] = useState(null);
+	const [openModal, setOpenModal] = useState(false);
 
 
 	useEffect(() => {
@@ -65,26 +65,37 @@ function Header() {
 				}
 			});
 	};
+	const handleOpenModal = () => setOpenModal(true);
+
+	const handleCloseModal = () => setOpenModal(false);
+
+	const handlePopOpen = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+
+	const handlePopClose = () => {
+		setAnchorEl(null);
+	};
 
 	const handleLogout = () => {
 		dispatch(logout());
 		dispatch(removeAllBookmark());
 	};
 
-	const showModal = () => {
-		setIsModalVisible(!isModalVisible);
-	};
-
-	const handleClick = (event) => {
-		setAnchorEl(event.currentTarget);
-	};
-
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
-
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
+
+	// const modalStyle = {
+	// 	position: 'absolute',
+	// 	top: '50%',
+	// 	left: '50%',
+	// 	transform: 'translate(-50%, -50%)',
+	// 	width: 450,
+	// 	bgcolor: 'background.paper',
+	// 	border: '2px solid #000',
+	// 	boxShadow: 24,
+	// 	p: 6,
+	// };
 
 
 	let modalContent;
@@ -92,15 +103,15 @@ function Header() {
 		modalContent = (
 			<div className={styles.registerContainer}>
 				<div className={styles.registerSection}>
-					<p>Sign-up</p>
-					<input type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
-					<input type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
+					<p className={styles.sign}>Sign-up</p>
+					<input className={styles.inputSign} type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setSignUpUsername(e.target.value)} value={signUpUsername} />
+					<input className={styles.inputSign} type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setSignUpPassword(e.target.value)} value={signUpPassword} />
 					<button className={styles.loginBtn} id="register" onClick={() => handleRegister()}>Register</button>
 				</div>
 				<div className={styles.registerSection}>
-					<p>Sign-in</p>
-					<input type="text" placeholder="Username" id="signInUsername" onChange={(e) => setSignInUsername(e.target.value)} value={signInUsername} />
-					<input type="password" placeholder="Password" id="signInPassword" onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
+					<p className={styles.sign}>Sign-in</p>
+					<input className={styles.inputSign} type="text" placeholder="Username" id="signInUsername" onChange={(e) => setSignInUsername(e.target.value)} value={signInUsername} />
+					<input className={styles.inputSign} type="password" placeholder="Password" id="signInPassword" onChange={(e) => setSignInPassword(e.target.value)} value={signInPassword} />
 					<button className={styles.loginBtn} id="connection" onClick={() => handleConnection()}>Connect</button>
 				</div>
 			</div>
@@ -111,14 +122,14 @@ function Header() {
 	if (user.token) {
 		userSection = (
 			<div className={styles.logoutSection}>
-				<div className={styles.welcome}>Welcome back, {user.username.charAt(0).toUpperCase() + user.username.slice(1).toLowerCase()}</div>
+				<div className={styles.welcome}>Welcome back, {user.username}</div>
 				<div>
-					<HiOutlineLogout size={30} className={styles.logoutIcon} onClick={handleClick} />
+					<HiOutlineLogout size={30} className={styles.logoutIcon} onClick={handlePopOpen} />
 					<Popover
 						id={id}
 						open={open}
 						anchorEl={anchorEl}
-						onClose={handleClose}
+						onClose={handlePopClose}
 						anchorOrigin={{
 							vertical: 'bottom',
 							horizontal: 'left',
@@ -134,17 +145,11 @@ function Header() {
 			</div>
 		);
 	} else {
-		if (isModalVisible) {
-			userSection =
-				<div className={styles.headerIcons}>
-					<FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faXmark} />
-				</div>
-		} else {
-			userSection =
-				<div className={styles.headerIcons}>
-					<FontAwesomeIcon onClick={showModal} className={styles.userSection} icon={faUser} />
-				</div>
-		}
+		userSection = (
+			<div>
+				<FaUserAstronaut onClick={handleOpenModal} className={styles.iconUser} size={30} />
+			</div>
+		);
 	}
 
 	return (
@@ -166,11 +171,20 @@ function Header() {
 				</div>
 			</div>
 
-			{isModalVisible && <div id="react-modals">
-				<Modal getContainer="#react-modals" className={styles.modal} visible={isModalVisible} closable={false} footer={null}>
-					{modalContent}
-				</Modal>
-			</div>}
+			{openModal &&
+				<div>
+					<Modal
+						open={openModal}
+						onClose={handleCloseModal}
+						aria-labelledby="Sign-up / Sign-in"
+						aria-describedby="Sign-up / Sign-in"
+					>
+						<Box className={styles.modal}>
+							<FontAwesomeIcon onClick={handleCloseModal} className={styles.iconX} icon={faXmark} />
+							{modalContent}
+						</Box>
+					</Modal>
+				</div>}
 		</header >
 	);
 }

@@ -14,3 +14,14 @@
 .title {
   margin: 1.8rem;
 }
+
+.backToTopBtn {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  cursor: pointer;
+  z-index: 999;
+}
+.backToTopBtn:hover {
+  opacity: 0.7;
+}

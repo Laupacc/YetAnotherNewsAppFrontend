@@ -54,7 +54,7 @@ function Article(props) {
 					<p>{props.description && props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
 				</div>
 				<div className={styles.footer}>
-					<h4>{props.source_id.charAt(0).toUpperCase() + props.source_id.slice(1).toLowerCase() || ''} - {props.pubDate}</h4>
+					<h4 className={styles.sourceID}>{props.source_id} - {props.pubDate}</h4>
 				</div>
 			</div>
 		</div>

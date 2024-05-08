@@ -5,6 +5,7 @@ import Article from './Article';
 import TopArticle from './TopArticle';
 import styles from '../styles/Home.module.css';
 import { FcSearch } from "react-icons/fc";
+import { PiArrowFatLinesUpDuotone } from "react-icons/pi";
 
 
 function Home() {
@@ -84,6 +85,13 @@ function Home() {
   const handleCountryChange = (country) => {
     setSelectedCountry(country);
     setSearchResults([]);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   const articles = articlesData.map((data, i) => {
@@ -193,7 +201,7 @@ function Home() {
           </div>
         </>
       )}
-
+      <PiArrowFatLinesUpDuotone onClick={scrollToTop} className={styles.backToTopBtn} size={40} color='brown'/>
     </div >
   );
 }

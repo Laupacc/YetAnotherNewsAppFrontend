@@ -27,7 +27,6 @@
 }
 
 .linkContainer {
-  width: 32rem;
   margin-bottom: 1.5rem;
   display: flex;
   justify-content: space-around;
@@ -42,24 +41,24 @@
   justify-content: center;
   align-items: center;
   color: black;
-  margin-left: 0.5rem;
+  margin: 0 2rem;
   text-align: center;
   font-size: 1rem;
 }
+
 .linkIcons:hover {
   cursor: pointer;
   color: gray;
   opacity: 0.8;
 }
 
-.userSection {
-  font-size: 1.4rem;
-  width: 12vw;
+.iconUser {
+  margin: 1rem;
   cursor: pointer;
 }
 
-.userSection:hover {
-  opacity: 0.8;
+.iconUser:hover {
+  opacity: 0.6;
 }
 
 .date {
@@ -67,24 +66,53 @@
   text-align: center;
   color: gray;
 }
-
-.registerContainer {
-  display: flex;
-  margin-bottom: 0.7rem;
-  border-top: 0.5px lightgray solid;
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28rem;
+  background-color: #ffffff;
+  border: 2px solid #000;
+  box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.25);
+  padding: 1.5rem;
 }
-
-.registeredContainer {
+.registerContainer {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .registerSection {
-  width: 15.5rem;
-  margin: 0.6rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  width: 20rem;
+}
+.sign {
+  font-size: 1.4rem;
+}
+.inputSign {
+  font-size: 1.2rem;
+  padding: 0.2rem;
+  width: 8rem;
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+}
+
+.iconX {
+  font-size: 1.5rem;
+  color: brown;
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.registeredContainer {
+  display: flex;
+  justify-content: center;
   align-items: center;
 }
 
@@ -98,24 +126,16 @@
 .logoutIcon {
   margin-left: 1rem;
   color: brown;
-}
-
-.logoutIcon:hover {
-  opacity: 0.8;
   cursor: pointer;
+}
+.logoutIcon:hover {
+  opacity: 0.6;
 }
 .welcome {
   font-size: 1.4rem;
   color: gray;
+  text-transform: capitalize;
 }
-
-.headerIcons {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 12vw;
-}
-
 .popBtn {
   background-color: transparent;
   border: none;
@@ -136,11 +156,87 @@
   border: none;
   cursor: pointer;
   color: rgb(85, 85, 226);
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin-bottom: 0.5rem;
   padding: 0.5rem;
 }
 .loginBtn:hover {
   background-color: rgba(85, 85, 226, 0.15);
   border-radius: 5px;
+}
+
+@media screen and (max-width: 460px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .logoContainer {
+    padding: 0 0.5rem 0 0.5rem;
+  }
+
+  .linkContainer {
+    margin-bottom: 0.5rem;
+  }
+
+  .linkIcons {
+    font-size: 0.8rem;
+    margin: 0 0.8rem;
+  }
+
+  .userSection {
+    font-size: 1rem;
+    width: 8vw;
+  }
+  .loginBtn {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    padding: 0.3rem;
+  }
+  .logoutSection {
+    margin: 0.5rem;
+  }
+  .logoutIcon {
+    margin-left: 0.5rem;
+    width: 1.5rem;
+    height: auto;
+  }
+  .iconUser{
+    width: 1.5rem;
+    height: auto;
+  }
+  .welcome {
+    font-size: 1rem;
+  }
+  .popBtn {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.3rem;
+  }
+  .registerSection {
+    margin: 0.5rem;
+    width: 50vw;
+  }
+  .sign {
+    font-size: 1rem;
+  }
+  .inputSign {
+    font-size: 0.8rem;
+    padding: 0.1rem;
+    width: 30vw;
+  }
+  .iconX {
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+  .modal {
+    width: 20rem;
+    padding: 1rem;
+  }
+}
+
+@media screen and (min-width: 460px) and (max-width: 768px) {
+  .title {
+    font-size: 2.5rem;
+  }
 }
