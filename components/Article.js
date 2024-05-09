@@ -1,8 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookmark, removeBookmark } from '../reducers/bookmarks';
-import Image from 'next/image';
 import styles from '../styles/Article.module.css';
-import Link from 'next/link';
 import { BiSolidBookmarkAltPlus, BiSolidBookmarkAltMinus } from "react-icons/bi";
 
 function Article(props) {

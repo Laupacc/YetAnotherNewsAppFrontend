@@ -24,7 +24,7 @@ function Bookmarks() {
 	return (
 		<div>
 			<Head>
-				<title>Morning News - Bookmarks</title>
+				<title>Yet Another News App / Bookmarks</title>
 			</Head>
 			<div className={styles.container}>
 				<h2 className={styles.title}>Bookmarks</h2>

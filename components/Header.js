@@ -1,8 +1,8 @@
+import styles from '../styles/Header.module.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout } from '../reducers/user';
-import { removeAllBookmark } from '../reducers/bookmarks';
-import styles from '../styles/Header.module.css';
+import { removeAllBookmark, updateBookmark } from '../reducers/bookmarks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FaUserAstronaut } from "react-icons/fa6";
@@ -20,6 +20,7 @@ import Box from '@mui/material/Box';
 function Header() {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user.value);
+	const bookmarks = useSelector((state) => state.bookmarks.value);
 
 	const [date, setDate] = useState('2050-11-22T23:59:59');
 	const [signUpUsername, setSignUpUsername] = useState('');
@@ -45,7 +46,7 @@ function Header() {
 					dispatch(login({ username: signUpUsername, token: data.token }));
 					setSignUpUsername('');
 					setSignUpPassword('');
-					setIsModalVisible(false)
+					setOpenModal(false)
 				}
 			});
 	};
@@ -59,12 +60,14 @@ function Header() {
 			.then(data => {
 				if (data.result) {
 					dispatch(login({ username: signInUsername, token: data.token }));
+					dispatch(updateBookmark(data.bookmarks));
 					setSignInUsername('');
 					setSignInPassword('');
-					setIsModalVisible(false)
+					setOpenModal(false)
 				}
 			});
 	};
+
 	const handleOpenModal = () => setOpenModal(true);
 
 	const handleCloseModal = () => setOpenModal(false);
@@ -80,22 +83,11 @@ function Header() {
 	const handleLogout = () => {
 		dispatch(logout());
 		dispatch(removeAllBookmark());
+		setAnchorEl(null);
 	};
 
 	const open = Boolean(anchorEl);
 	const id = open ? 'simple-popover' : undefined;
-
-	// const modalStyle = {
-	// 	position: 'absolute',
-	// 	top: '50%',
-	// 	left: '50%',
-	// 	transform: 'translate(-50%, -50%)',
-	// 	width: 450,
-	// 	bgcolor: 'background.paper',
-	// 	border: '2px solid #000',
-	// 	boxShadow: 24,
-	// 	p: 6,
-	// };
 
 
 	let modalContent;

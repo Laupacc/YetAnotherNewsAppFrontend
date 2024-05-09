@@ -201,7 +201,7 @@ function Home() {
           </div>
         </>
       )}
-      <PiArrowFatLinesUpDuotone onClick={scrollToTop} className={styles.backToTopBtn} size={40} color='brown'/>
+      <PiArrowFatLinesUpDuotone onClick={scrollToTop} className={styles.backToTopBtn} size={40} color='brown' />
     </div >
   );
 }

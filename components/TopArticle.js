@@ -1,9 +1,6 @@
+import styles from '../styles/TopArticle.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addBookmark, removeBookmark } from '../reducers/bookmarks';
-import styles from '../styles/TopArticle.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import Link from 'next/link';
 import { BiSolidBookmarkAltPlus, BiSolidBookmarkAltMinus } from "react-icons/bi";
 
 
@@ -58,7 +55,7 @@ function TopArticle(props) {
 							<p>{props.description && props.description.length > 205 ? `${props.description.slice(0, 250)}...` : props.description}</p>
 						</div>
 						<div className={styles.footer}>
-						<h4 className={styles.sourceID}>{props.source_id} - {props.pubDate}</h4>
+							<h4 className={styles.sourceID}>{props.source_id} - {props.pubDate}</h4>
 						</div>
 					</div>
 				</div>
