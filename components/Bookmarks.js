@@ -36,7 +36,6 @@ function Bookmarks() {
 				<title>Yet Another News App / Bookmarks</title>
 			</Head>
 			<div className={styles.container}>
-				{/* <h2 className={styles.title}>Bookmarks</h2> */}
 				<div className={styles.articlesContainer}>
 					{articles}
 				</div>
