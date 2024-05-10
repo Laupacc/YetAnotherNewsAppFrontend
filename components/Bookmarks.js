@@ -8,19 +8,19 @@ function Bookmarks() {
 	const user = useSelector((state) => state.user.value);
 	const bookmarks = useSelector((state) => state.bookmarks.value);
 
-	if (!user.token) {
-		return (
-			<div className={styles.container}>
-				<h1 className={styles.title}>Please sign in to see your bookmarks</h1>
-			</div>
-		);
-	}
 
 	let articles = <h1 className={styles.title}>You haven't bookmarked any article yet</h1>;
 	if (bookmarks.length > 0) {
 		articles = bookmarks.map((data, i) => {
 			return <Article key={i} {...data} isBookmarked />;
 		});
+	}
+	if (!user.token) {
+		return (
+			<div className={styles.container}>
+				<h1 className={styles.title}>Please sign in to see your bookmarks</h1>
+			</div>
+		);
 	}
 
 	const scrollToTop = () => {

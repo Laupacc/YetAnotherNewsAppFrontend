@@ -20,7 +20,7 @@ import Box from '@mui/material/Box';
 function Header() {
 	const dispatch = useDispatch();
 	const user = useSelector((state) => state.user.value);
-	// const bookmarks = useSelector((state) => state.bookmarks.value);
+	const bookmarks = useSelector((state) => state.bookmarks.value);
 
 	const [date, setDate] = useState('2050-11-22T23:59:59');
 	const [signUpUsername, setSignUpUsername] = useState('');
@@ -64,7 +64,6 @@ function Header() {
 					setSignInPassword('');
 					setOpenModal(false)
 
-					dispatch(updateBookmark());
 				}
 			});
 	};
