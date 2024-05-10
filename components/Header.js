@@ -63,7 +63,9 @@ function Header() {
 					setSignInUsername('');
 					setSignInPassword('');
 					setOpenModal(false);
-					dispatch(updateBookmark(data.bookmarks));
+
+					const newBookmarks = [...bookmarks, ...data.bookmarks];
+					dispatch(updateBookmark(newBookmarks));
 				}
 			});
 	};
