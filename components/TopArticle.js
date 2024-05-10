@@ -48,7 +48,7 @@ function TopArticle(props) {
 								<h2>{props.title}</h2>
 							</a>
 							<div onClick={() => handleBookmarkClick()}>
-								{bookmarkIcon}
+								{user.token && bookmarkIcon }
 							</div>
 						</div>
 						<div className={styles.articleDescription}>

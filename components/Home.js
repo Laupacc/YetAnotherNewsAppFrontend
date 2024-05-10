@@ -95,12 +95,12 @@ function Home() {
   };
 
   const articles = articlesData.map((data, i) => {
-    const isBookmarked = bookmarks.some(bookmark => bookmark.title === data.title);
+    const isBookmarked = bookmarks?.some(bookmark => bookmark.title === data.title);
     return <Article key={i} {...data} isBookmarked={isBookmarked} />;
   });
 
   const topArticles = (
-    <TopArticle {...topArticle} isBookmarked={bookmarks.some(bookmark => bookmark.title === topArticle.title)} />
+    <TopArticle {...topArticle} isBookmarked={bookmarks?.some(bookmark => bookmark.title === topArticle.title)} />
   );
 
   const categoryTitles = {

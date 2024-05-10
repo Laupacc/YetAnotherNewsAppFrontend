@@ -9,6 +9,9 @@ export const bookmarksSlice = createSlice({
 	initialState,
 	reducers: {
 		addBookmark: (state, action) => {
+			if (!state.value) {
+				state.value = []; // Initialize state.value if it's undefined
+			}
 			state.value.push(action.payload);
 		},
 		removeBookmark: (state, action) => {

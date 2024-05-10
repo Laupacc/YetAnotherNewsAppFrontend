@@ -26,6 +26,7 @@ function Article(props) {
 			});
 	}
 
+
 	let iconStyle = {};
 	let bookmarkIcon = <BiSolidBookmarkAltPlus style={iconStyle} className={styles.bookmarkIcon} size={30} />;
 	if (props.isBookmarked) {
@@ -45,7 +46,7 @@ function Article(props) {
 						<h3>{props.title}</h3>
 					</a>
 					<div onClick={() => handleBookmarkClick()}>
-						{bookmarkIcon}
+						{user.token && bookmarkIcon}
 					</div>
 				</div>
 				<div className={styles.articleDescription}>
