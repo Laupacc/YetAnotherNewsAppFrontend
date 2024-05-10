@@ -14,7 +14,7 @@ function TopArticle(props) {
 			return;
 		}
 
-		fetch(`https://morning-news-backend-five.vercel.app/users/canBookmark/${user.token}`)
+		fetch(`https://yet-another-news-app-backend.vercel.app/users/canBookmark/${user.token}`)
 			.then(response => response.json())
 			.then(data => {
 				if (data.result && data.canBookmark) {
@@ -48,7 +48,7 @@ function TopArticle(props) {
 								<h2>{props.title}</h2>
 							</a>
 							<div onClick={() => handleBookmarkClick()}>
-								{user.token && bookmarkIcon }
+								{user.token && bookmarkIcon}
 							</div>
 						</div>
 						<div className={styles.articleDescription}>

@@ -26,7 +26,7 @@ function Home() {
 
 
   const fetchArticles = (country, category) => {
-    let url = `https://morning-news-backend-five.vercel.app/${country}/${category}`;
+    let url = `https://yet-another-news-app-backend.vercel.app/${country}/${category}`;
     fetch(url)
       .then(response => response.json())
       .then(data => {
@@ -52,7 +52,7 @@ function Home() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    fetch(`https://morning-news-backend-five.vercel.app/search?qInMeta=${searchTerm}`)
+    fetch(`https://yet-another-news-app-backend.vercel.app/search?qInMeta=${searchTerm}`)
       .then(response => response.json())
       .then(data => {
         const uniqueArticles = [];
