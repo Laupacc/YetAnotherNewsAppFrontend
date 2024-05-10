@@ -1,6 +1,18 @@
 @font-face {
-  font-family: "Old London";
+  font-family: OldLondon;
   src: url("/fonts/OldLondon.ttf") format("truetype");
+}
+@font-face {
+  font-family: Chomsky;
+  src: url("/fonts/Chomsky.otf") format("opentype");
+}
+@font-face {
+  font-family: Oldnewspaper;
+  src: url("/fonts/Oldnewspaper.ttf") format("truetype");
+}
+@font-face {
+  font-family: RadioNewsman;
+  src: url("/fonts/RadioNewsman.ttf") format("truetype");
 }
 
 .header {
@@ -13,7 +25,7 @@
 
 .title {
   font-size: 3rem;
-  font-family: "Old London";
+  font-family: Chomsky;
   text-shadow: 1px 1px 0px #000;
   margin: 1rem;
 }
@@ -200,7 +212,7 @@
     width: 1.5rem;
     height: auto;
   }
-  .iconUser{
+  .iconUser {
     width: 1.5rem;
     height: auto;
   }

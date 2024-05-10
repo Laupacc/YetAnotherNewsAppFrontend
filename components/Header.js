@@ -62,8 +62,8 @@ function Header() {
 					dispatch(login({ username: signInUsername, token: data.token }));
 					setSignInUsername('');
 					setSignInPassword('');
-					setOpenModal(false)
-
+					setOpenModal(false);
+					dispatch(updateBookmark(data.bookmarks));
 				}
 			});
 	};
